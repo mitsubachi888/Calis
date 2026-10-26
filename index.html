@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -41,7 +41,10 @@
   --hero:#1B2631; --on-hero:#E7ECEA; --hero-sub:#93A0A9; --hero-panel:#243240;
   --fig:#E7ECEA; --fig2:#5E6B75; --figbg:#1D2832; --prop:#33414C; --prop-l:#45535E; --hl-far:#8C3E26; --band:#4DB59E; color-scheme:dark}
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;touch-action:manipulation}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+input,textarea,select{font-size:16px!important}
+button,.btn,.srow,.tabs button{-webkit-user-select:none;user-select:none}
 html,body{height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-tap-highlight-color:transparent}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;text-align:inherit}
