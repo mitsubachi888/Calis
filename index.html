@@ -21,6 +21,7 @@
   --ok:#2B7A69; --ok-soft:#D6ECE6; --warn:#A86A12; --warn-soft:#F6E7C8;
   --hero:#16202A; --on-hero:#ECEEEA; --hero-sub:#9AA6B0; --hero-panel:#202C37;
   --fig:#17212B; --fig2:#9AA4AC; --figbg:#E3E6E1; --prop:#C6CCC3; --prop-l:#A9B0A5; --hl-far:#E9A48C; --band:#2B7A69;
+  --c-chest:#D4461B; --c-arms:#13897A; --c-back:#2F6FD6; --c-legs:#6B8E0E; --c-core:#7A55E0; --bad:#C8352B; --on-sc:#FFFFFF;
   --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
   --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --r:16px;
@@ -29,12 +30,14 @@
   --bg:#0D1216; --surface:#161F27; --sunk:#1D2832; --ink:#E7ECEA; --muted:#93A0A9; --line:#25313B;
   --accent:#FF6B3F; --accent-soft:#3A2017; --on-accent:#1A0C06;
   --ok:#4DB59E; --ok-soft:#14302A; --warn:#E3AA4E; --warn-soft:#352813;
+  --c-chest:#FF6B3F; --c-arms:#2FC2AE; --c-back:#5B9BFF; --c-legs:#C5E34A; --c-core:#A88BFF; --bad:#FF5A4E; --on-sc:#14100C;
   --hero:#1B2631; --on-hero:#E7ECEA; --hero-sub:#93A0A9; --hero-panel:#243240;
   --fig:#E7ECEA; --fig2:#5E6B75; --figbg:#1D2832; --prop:#33414C; --prop-l:#45535E; --hl-far:#8C3E26; --band:#4DB59E; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0D1216; --surface:#161F27; --sunk:#1D2832; --ink:#E7ECEA; --muted:#93A0A9; --line:#25313B;
   --accent:#FF6B3F; --accent-soft:#3A2017; --on-accent:#1A0C06;
   --ok:#4DB59E; --ok-soft:#14302A; --warn:#E3AA4E; --warn-soft:#352813;
+  --c-chest:#FF6B3F; --c-arms:#2FC2AE; --c-back:#5B9BFF; --c-legs:#C5E34A; --c-core:#A88BFF; --bad:#FF5A4E; --on-sc:#14100C;
   --hero:#1B2631; --on-hero:#E7ECEA; --hero-sub:#93A0A9; --hero-panel:#243240;
   --fig:#E7ECEA; --fig2:#5E6B75; --figbg:#1D2832; --prop:#33414C; --prop-l:#45535E; --hl-far:#8C3E26; --band:#4DB59E; color-scheme:dark}
 
@@ -230,6 +233,105 @@ ol.cue{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
 .mini{font-size:.82rem;padding:6px 12px;border-radius:999px;background:var(--sunk);font-weight:600;min-height:0}
 .sheet{position:absolute;inset:auto 0 0 0;background:var(--surface);border-top:1px solid var(--line);border-radius:20px 20px 0 0;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:10px;box-shadow:0 -10px 30px rgba(0,0,0,.2)}
 .flag{display:flex;flex-direction:column;gap:8px;background:var(--accent-soft);border-radius:14px;padding:12px 14px}
+
+/* ===== v1.3: color system ===== */
+.avatar{border:0;cursor:pointer;background:linear-gradient(135deg,var(--c-chest),var(--c-core));color:#fff}
+.avatar.lg{width:60px;height:60px;font-size:1.9rem;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800}
+.weekstrip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px 6px}
+.day{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.7rem;color:var(--muted);font-weight:600}
+.day i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.82rem;color:var(--muted);border:2.5px solid var(--line);background:none;box-shadow:none}
+.day i svg{width:18px;height:18px}
+.day.done i{border-color:var(--dc);background:color-mix(in srgb,var(--dc) 22%,transparent);color:var(--dc)}
+.day.today span{color:var(--ink)}
+.day.today i{border-color:var(--ink);color:var(--ink);font-weight:700}
+.day.today.done i{border-color:var(--dc);color:var(--dc)}
+.hero{background:radial-gradient(120% 90% at 100% 0%,color-mix(in srgb,var(--sc) 42%,transparent),transparent 62%),linear-gradient(160deg,var(--hero) 40%,color-mix(in srgb,var(--sc) 18%,var(--hero)));}
+.hero-kicker{display:flex;align-items:center;gap:7px;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--hero-sub)}
+.hero-kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--sc);box-shadow:0 0 0 4px color-mix(in srgb,var(--sc) 25%,transparent)}
+.hero .chips{margin-top:8px}
+.chip.g{background:color-mix(in srgb,var(--gc) 22%,transparent);color:color-mix(in srgb,var(--gc) 70%,#fff)}
+.hero .fig{--hl-far:color-mix(in srgb,var(--accent) 45%,var(--hero))}
+.btn-hero{background:var(--sc);color:var(--on-sc);font-weight:700}
+.btn-hero svg{width:18px;height:18px}
+.btn-hero2{flex:none;background:var(--hero-panel);color:var(--on-hero)}
+.btn-primary svg{width:18px;height:18px}
+.target-in{display:flex;gap:16px;align-items:center}
+.target-in .ring{flex:none;width:132px;height:132px}
+.ring-n{font-family:var(--display);font-weight:800;font-size:30px;fill:var(--ink)}
+.ring-l{font-size:9.5px;fill:var(--muted);font-weight:600;letter-spacing:.04em}
+.grows{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.grow{display:grid;grid-template-columns:10px 40px 1fr auto;align-items:center;gap:8px;font-size:.84rem}
+.gdot{width:10px;height:10px;border-radius:3px;background:var(--gc)}
+.grow b{font-weight:600}
+.gbar{height:6px;border-radius:6px;background:color-mix(in srgb,var(--gc) 20%,transparent);overflow:hidden}
+.gbar i{display:block;height:100%;background:var(--gc);border-radius:6px}
+.gval{font-weight:700;font-size:.85rem}.gval small{color:var(--muted);font-weight:500}
+@media (max-width:370px){.target-in{flex-direction:column;align-items:stretch}.target-in .ring{align-self:center}}
+.ptrack{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.pseg{height:30px;border-radius:8px;background:color-mix(in srgb,var(--pc) 18%,transparent);display:grid;place-items:center;font-style:normal}
+.pseg i{font-style:normal;font-size:.75rem;font-weight:700;color:color-mix(in srgb,var(--pc) 80%,var(--ink))}
+.pseg.past{background:color-mix(in srgb,var(--pc) 55%,transparent)}
+.pseg.now{background:var(--pc);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--pc)}
+.pseg.now i{color:var(--on-sc)}
+.plegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:.76rem;color:var(--muted)}
+.plegend span{display:inline-flex;align-items:center;gap:6px}
+.plegend span::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--pc)}
+.plegend span.on{color:var(--ink);font-weight:600}
+.stat{position:relative;overflow:hidden}
+.stat .si{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb,var(--sc) 18%,transparent);color:var(--sc);margin-bottom:8px}
+.stat .si svg{width:17px;height:17px}
+.prog .tag{color:var(--sc)}
+.prog .thumb{background:color-mix(in srgb,var(--sc) 14%,var(--figbg))}
+.prog .thumb .fig{--figbg:transparent}
+.exrow{position:relative}
+.gtag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:2px 8px;background:color-mix(in srgb,var(--gc) 16%,transparent);color:var(--gc)}
+.exrow .gtag{margin-left:auto;flex:none}
+.exrow .thumb{background:color-mix(in srgb,var(--gc) 12%,var(--figbg))}.exrow .thumb .fig{--figbg:transparent}
+.lcard .fig{--figbg:color-mix(in srgb,var(--gc) 12%,var(--sunk))}
+.lcard div{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.mini.on{background:var(--ink);color:var(--bg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.76rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend span::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--gc)}
+.empty-chart{height:120px;border-radius:12px;border:1.5px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.85rem}
+.tb{display:flex;flex-direction:column;gap:6px}
+.tb b{font-weight:600;font-size:.92rem}
+.tbr{display:grid;grid-template-columns:62px 1fr 64px;align-items:center;gap:8px;font-size:.78rem;color:var(--muted)}
+.tbr i{height:10px;border-radius:6px;background:var(--tc);min-width:2px}
+.tbr i.old{background:color-mix(in srgb,var(--tc) 35%,transparent)}
+.tbr em{font-style:normal;font-weight:700;color:var(--ink);text-align:right}
+.delta{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--ok-soft);color:var(--ok)}
+.delta.neg{background:var(--warn-soft);color:var(--warn)}
+.rec{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.rec:first-of-type{border-top:0}
+.rec .thumb{background:color-mix(in srgb,var(--gc) 14%,var(--figbg))}.rec .thumb .fig{--figbg:transparent}
+.rec b{display:block;font-weight:600;font-size:.9rem;line-height:1.2}.rec span{font-size:.78rem;color:var(--muted)}
+.rec em{margin-left:auto;font-style:normal;font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--gc)}
+.rec em small{font-family:var(--body);font-size:.7rem;color:var(--muted);font-weight:500}
+.hcard .eyebrow{display:flex;align-items:center;gap:6px}
+.hcard .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sc)}
+/* Settings */
+.profile{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:14px}
+.profile input{margin-top:4px;font-weight:600;font-size:1.05rem;background:var(--sunk);border:1px solid transparent}
+.sgroup-h{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:6px 4px -8px}
+.sgroup{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.srow{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;min-height:56px;cursor:pointer}
+.srow + .srow,.spanel + .srow{border-top:1px solid var(--line)}
+.sic{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--ic);color:#fff}
+.sic svg{width:18px;height:18px}
+.sl{flex:1;min-width:0;font-weight:500;line-height:1.25}
+.sl small{display:block;font-size:.76rem;color:var(--muted);font-weight:400;margin-top:2px}
+.sv{color:var(--muted);font-size:.85rem;text-align:right}
+.chev{color:var(--muted);display:inline-flex}.chev svg{width:16px;height:16px}
+.srow.danger .sl{color:var(--bad)}
+.spanel{padding:4px 14px 14px 58px;display:flex;flex-direction:column;gap:10px;font-size:.88rem}
+.spanel details summary{cursor:pointer;font-size:.82rem}
+.spanel textarea{margin-top:8px}
+.btn-danger{background:var(--bad);color:#fff}
+.tog{appearance:none;-webkit-appearance:none;flex:none;width:50px;height:30px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;transition:background .2s;margin:0}
+.tog::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.tog:checked{background:var(--ok)}
+.tog:checked::after{transform:translateX(20px)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -560,11 +662,68 @@ const IC={
   pause:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
   play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z"/></svg>',
   x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  flame:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5 5 5.6 5 10.5A5 5 0 0 1 7 13c0-2 1-3.5 2-4.5.2 1.7 1 2.8 2 3.2C10.6 9 11 5.5 12 2z"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
+  trophy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+  sound:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6L8 10zM16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5"/></svg>',
+  restart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.5-5.8M4 4v4h4"/></svg>',
+  upload:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7 9l5-5 5 5M5 15v4h14v-4"/></svg>',
+  download:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 15v4h14v-4"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
 };
 
+/* ============ Muscle groups & weekly volume ============ */
+const GROUPS=[
+  {k:'chest',n:'Ngực',c:'var(--c-chest)'},
+  {k:'arms',n:'Tay',c:'var(--c-arms)'},
+  {k:'back',n:'Lưng',c:'var(--c-back)'},
+  {k:'legs',n:'Chân',c:'var(--c-legs)'},
+  {k:'core',n:'Bụng',c:'var(--c-core)'}];
+const GOF={bandPush:'chest',deficit:'chest',diamond:'chest',wide:'chest',decline:'chest',standard:'chest',maxPush:'chest',
+  dips:'arms',curl:'arms',ohExt:'arms',bandRow:'back',
+  split:'legs',bandSquat:'legs',slBridge:'legs',wallSit:'legs',squat60:'legs',
+  deadBug:'core',hollow:'core',sidePlank:'core',slowMC:'core',shTap:'core',revCrunch:'core',plankMax:'core'};
+const gColor=k=>(GROUPS.find(g=>g.k===k)||{}).c||'var(--accent)';
+const gName=k=>(GROUPS.find(g=>g.k===k)||{}).n||'';
+const SCOL={A:'var(--c-chest)',B:'var(--c-legs)',T:'var(--c-core)'};
+function countWork(steps){const v={};for(const s of steps){if(!s.ex||s.test||s.phase!=='work'||s.t==='watch')continue;const g=GOF[s.ex];if(g)v[g]=(v[g]||0)+1}return v}
+const TARGET=(()=>{const a=countWork(SESS.A.steps()),b=countWork(SESS.B.steps()),o={};GROUPS.forEach(g=>o[g.k]=(a[g.k]||0)+(b[g.k]||0));return o})();
+const TARGET_SUM=Object.values(TARGET).reduce((a,b)=>a+b,0);
+function sessVol(s){if(s.vol)return s.vol;const v={};s.sets.forEach(x=>{if(x.test)return;const g=GOF[x.ex];if(g)v[g]=(v[g]||0)+1});return v}
+function volBetween(list,a,b){const v={};list.filter(s=>s.date>=a&&s.date<b).forEach(s=>{const sv=sessVol(s);for(const k in sv)v[k]=(v[k]||0)+sv[k]});return v}
+
+/* 8-week phases */
+const PHASES=[{from:1,to:2,n:'Làm quen',c:'var(--c-arms)'},{from:3,to:5,n:'Tăng tải',c:'var(--c-chest)'},{from:6,to:7,n:'Biến thể khó',c:'var(--c-core)'},{from:8,to:8,n:'Kiểm tra',c:'var(--c-legs)'}];
+const phaseOf=w=>PHASES.find(p=>w>=p.from&&w<=p.to)||PHASES[0];
+function phaseTrack(w){
+  return `<div class="ptrack" role="img" aria-label="Tuần ${w} trên 8, giai đoạn ${phaseOf(w).n}">${[1,2,3,4,5,6,7,8].map(i=>{const p=phaseOf(i);return `<span class="pseg${i<w?' past':''}${i===w?' now':''}" style="--pc:${p.c}"><i>${i}</i></span>`}).join('')}</div>
+  <div class="plegend">${PHASES.map(p=>`<span style="--pc:${p.c}"${phaseOf(w)===p?' class="on"':''}>${p.n}</span>`).join('')}</div>`;
+}
+
+/* Weekly ring (Fitbod-style segmented target) */
+function weekRing(v,size=148){
+  const R=54,C=2*Math.PI*R,gap=6;let off=0,done=0;
+  const segs=GROUPS.map(g=>{const t=TARGET[g.k]||0;if(!t)return'';const len=C*t/TARGET_SUM-gap,d=Math.min(v[g.k]||0,t);done+=d;
+    const s=`<circle r="${R}" cx="70" cy="70" fill="none" stroke="${g.c}" stroke-opacity=".22" stroke-width="12" stroke-dasharray="${len.toFixed(1)} ${C}" stroke-dashoffset="${(-off).toFixed(1)}"/>`+
+      (d?`<circle r="${R}" cx="70" cy="70" fill="none" stroke="${g.c}" stroke-width="12" stroke-linecap="butt" stroke-dasharray="${(len*d/t).toFixed(1)} ${C}" stroke-dashoffset="${(-off).toFixed(1)}"/>`:'');
+    off+=len+gap;return s}).join('');
+  const pct=Math.round(100*done/TARGET_SUM);
+  return `<svg class="ring" viewBox="0 0 140 140" width="${size}" height="${size}" role="img" aria-label="Đã xong ${pct}% số hiệp tuần này"><g transform="rotate(-90 70 70)">${segs}</g>
+    <text x="70" y="72" text-anchor="middle" class="ring-n">${pct}%</text><text x="70" y="92" text-anchor="middle" class="ring-l">hiệp tuần này</text></svg>`;
+}
+function groupRows(v){
+  return GROUPS.map(g=>{const t=TARGET[g.k],d=Math.min(v[g.k]||0,t);return `<div class="grow" style="--gc:${g.c}"><span class="gdot"></span><b>${g.n}</b><span class="gbar"><i style="width:${(100*d/t).toFixed(0)}%"></i></span><span class="num gval">${v[g.k]||0}<small>/${t}</small></span></div>`}).join('');
+}
+
 /* ============ Views ============ */
-let tab='home',preview=null;
+let tab='home',preview=null,demo=false;
 function setTab(t){tab=t;preview=null;document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));render();window.scrollTo(0,0)}
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setTab(b.dataset.tab)});
 function render(){
@@ -572,6 +731,7 @@ function render(){
   $('#app').innerHTML=preview?viewPreview(preview):v();
   mountFigs($('#app'));
 }
+const initial=()=>esc((S.name||'M').trim().charAt(0).toUpperCase());
 
 function viewHome(){
   const nt=nextType(),ns=SESS[nt],w=cycleWeek(),lt=lastTrain(),la=lastOf('A');
@@ -581,117 +741,191 @@ function viewHome(){
   if(nt==='A' && la && daysAgo(la.date)<3) notes.push(['warn',`Buổi Ngực + Tay gần nhất mới cách ${daysAgo(la.date)} ngày. Nên đợi đủ 3 ngày để ngực và tay hồi phục.`]);
   if(w>=8 && nt==='T') notes.push(['info','Tuần 8: kiểm tra lại để so sánh với buổi đầu.']);
   const flags=pendingFlags();
-  if(flags.length) notes.push(['info','Đến lúc tăng độ khó: '+flags.map(exName).join(', ')+'. Xem cách tăng trong tab Bài tập.']);
+  if(flags.length) notes.push(['info','Đến lúc tăng độ khó: '+flags.map(exName).join(', ')+'.']);
   const m=monday(),names=['T2','T3','T4','T5','T6','T7','CN'],today=(new Date().getDay()+6)%7;
   const doneW=S.sessions.filter(s=>s.date>=m).length;
-  const days=names.map((n,i)=>{const a=m+i*DAY,b=a+DAY,ss=S.sessions.filter(s=>s.date>=a&&s.date<b);
-    return `<div class="day${ss.length?' done':''}${i===today?' today':''}"><i>${ss.length?SESS[ss[ss.length-1].type].tag:''}</i>${n}</div>`}).join('');
-  const exs=mainEx(nt);
-  const name=esc(S.name||'Michael');
+  const days=names.map((n,i)=>{const a=m+i*DAY,ss=S.sessions.filter(s=>s.date>=a&&s.date<a+DAY),t=ss.length?ss[ss.length-1].type:null;
+    return `<div class="day${t?' done':''}${i===today?' today':''}" style="--dc:${t?SCOL[t]:'var(--line)'}"><span>${n}</span><i>${t?IC.check:new Date(a).getDate()}</i></div>`}).join('');
+  const exs=mainEx(nt),v=volBetween(S.sessions,m,m+7*DAY),sc=SCOL[nt];
   return `<div class="stack">
-  <header class="hello"><div><div class="hi">${greet()},</div><h1>${name}</h1></div><div class="avatar" aria-hidden="true">${esc((S.name||'M').trim().charAt(0).toUpperCase())}</div></header>
+  <header class="hello"><div><div class="hi">${greet()},</div><h1>${esc(S.name||'Michael')}</h1></div><button class="avatar" data-go="set" aria-label="Cài đặt">${initial()}</button></header>
 
-  <section class="hero" aria-label="Buổi tiếp theo">
+  <div class="weekstrip">${days}</div>
+
+  <section class="hero" style="--sc:${sc}" aria-label="Buổi tiếp theo">
     <div class="hero-top"><div class="txt">
-        <div class="eyebrow">Buổi tiếp theo · Tuần ${w}/8</div>
+        <div class="hero-kicker"><span class="dot"></span>${nt==='T'?'Kiểm tra':'Buổi '+nt} · Tuần ${w}/8 · ${phaseOf(w).n}</div>
         <h2>${ns.name}</h2>
-        <div class="chips"><span class="chip num">${ns.mins} phút</span><span class="chip">${exs.length} bài</span><span class="chip">${ns.focus}</span></div>
+        <div class="chips"><span class="chip num">${ns.mins} phút</span><span class="chip">${exs.length} bài</span></div>
+        <div class="chips">${[...new Set(exs.map(id=>GOF[id]).filter(Boolean))].map(g=>`<span class="chip g" style="--gc:${gColor(g)}">${gName(g)}</span>`).join('')}</div>
       </div><div class="hero-art">${figHTML(ns.hero)}</div></div>
     <div class="hero-bottom">
       <div class="hero-ex">${exs.slice(0,6).map(id=>`<span class="thumb">${figHTML(id)}</span>`).join('')}</div>
-      <div class="row" style="flex-wrap:nowrap"><button class="btn btn-primary" style="flex:1" data-s="${nt}">Bắt đầu tập</button><button class="btn" style="flex:none;background:var(--hero-panel);color:var(--on-hero)" data-pv="${nt}">Xem bài</button></div>
+      <div class="row" style="flex-wrap:nowrap"><button class="btn btn-hero" style="flex:1" data-s="${nt}">${IC.play} Bắt đầu tập</button><button class="btn btn-hero2" data-pv="${nt}">Xem bài</button></div>
     </div>
   </section>
 
   ${notes.map(([k,t])=>`<div class="notice ${k}">${esc(t)}</div>`).join('')}
 
-  <section class="card"><div class="row between"><div class="eyebrow">Tuần này</div><div class="num" style="font-weight:600">${doneW}/2 buổi</div></div><div class="weekbar">${days}</div></section>
+  <section class="card target"><div class="target-in">${weekRing(v)}<div class="grows"><div class="row between"><div class="eyebrow">Mục tiêu tuần</div><span class="num muted" style="font-size:.8rem">${doneW}/2 buổi</span></div>${groupRows(v)}</div></div></section>
 
-  <div class="stats"><div class="stat"><b class="num">${weekStreak()}</b><span>tuần tập liên tục</span></div><div class="stat"><b class="num">${S.sessions.length}</b><span>buổi đã tập</span></div><div class="stat"><b class="num">${bestPush()||'–'}</b><span>push-up tối đa</span></div></div>
+  <section class="card"><div class="row between" style="margin-bottom:10px"><div class="eyebrow">Chu kỳ 8 tuần</div><span class="muted" style="font-size:.8rem">Tuần ${w}</span></div>${phaseTrack(w)}</section>
 
-  <div class="sec-h"><h2>Chương trình 8 tuần</h2><span class="muted" style="font-size:.85rem">2 buổi/tuần</span></div>
+  <div class="stats">
+    <div class="stat" style="--sc:var(--c-chest)"><span class="si">${IC.flame}</span><b class="num">${weekStreak()}</b><span>tuần liên tục</span></div>
+    <div class="stat" style="--sc:var(--c-arms)"><span class="si">${IC.cal}</span><b class="num">${S.sessions.length}</b><span>buổi đã tập</span></div>
+    <div class="stat" style="--sc:var(--c-legs)"><span class="si">${IC.trophy}</span><b class="num">${bestPush()||'–'}</b><span>push-up tối đa</span></div></div>
+
+  <div class="sec-h"><h2>Chương trình</h2><span class="muted" style="font-size:.85rem">2 buổi/tuần</span></div>
   <div class="stack" style="gap:10px">
-    ${['A','B','T'].map(k=>`<button class="prog" data-pv="${k}"><span class="thumb">${figHTML(SESS[k].hero)}</span><div><span class="tag">${k==='T'?'KIỂM TRA':'BUỔI '+k}</span><h3>${SESS[k].name}</h3><small>${SESS[k].mins} phút · ${mainEx(k).length} bài${lastOf(k)?' · lần trước '+fmtDate(lastOf(k).date):''}</small></div><span class="go">${IC.next}</span></button>`).join('')}
+    ${['A','B','T'].map(k=>`<button class="prog" data-pv="${k}" style="--sc:${SCOL[k]}"><span class="thumb">${figHTML(SESS[k].hero)}</span><div><span class="tag">${k==='T'?'KIỂM TRA':'BUỔI '+k}</span><h3>${SESS[k].name}</h3><small>${SESS[k].mins} phút · ${mainEx(k).length} bài${lastOf(k)?' · '+fmtDate(lastOf(k).date):''}</small></div><span class="go">${IC.next}</span></button>`).join('')}
   </div></div>`;
 }
 
 function viewPreview(k){
   const s=SESS[k];
   const blocks=s.blocks.map(b=>`<section><div class="blk-h"><b>${esc(b.l)}</b><span>${esc(b.note)}</span></div>
-    ${b.items.map(([id,dose,tag])=>`<button class="exrow" data-ex="${id}"><span class="thumb">${figHTML(id)}</span><div>${tag?`<div class="lbl">${tag}</div>`:''}<div class="nm">${esc(exName(id))}</div><div class="ds num">${esc(dose)}</div></div></button>`).join('')}</section>`).join('');
+    ${b.items.map(([id,dose,tag])=>`<button class="exrow" data-ex="${id}" style="--gc:${GOF[id]?gColor(GOF[id]):'var(--muted)'}"><span class="thumb">${figHTML(id)}</span><div>${tag?`<div class="lbl">${tag}</div>`:''}<div class="nm">${esc(exName(id))}</div><div class="ds num">${esc(dose)}</div></div>${GOF[id]?`<span class="gtag">${gName(GOF[id])}</span>`:''}</button>`).join('')}</section>`).join('');
   return `<div class="stack">
-    <div class="backbar"><button class="iconbtn" id="back" aria-label="Quay lại">${IC.back}</button><div><div class="eyebrow">${k==='T'?'Kiểm tra':'Buổi '+k} · ${s.mins} phút</div><h1 style="font-size:2rem">${s.name}</h1></div></div>
+    <div class="backbar"><button class="iconbtn" id="back" aria-label="Quay lại">${IC.back}</button><div><div class="eyebrow" style="color:${SCOL[k]}">${k==='T'?'Kiểm tra':'Buổi '+k} · ${s.mins} phút</div><h1 style="font-size:2rem">${s.name}</h1></div></div>
     ${k!=='T'?'<p class="muted">Mỗi hiệp dừng khi chỉ còn sức làm thêm 1–2 rep. Hai bài cùng chữ cái làm xen kẽ (A1 → A2 → nghỉ). Chạm vào bài để xem hướng dẫn.</p>':''}
     ${blocks}
-    <div class="sticky-cta"><button class="btn btn-primary btn-block" data-s="${k}">Bắt đầu buổi tập</button></div></div>`;
+    <div class="sticky-cta"><button class="btn btn-primary btn-block" data-s="${k}">${IC.play} Bắt đầu buổi tập</button></div></div>`;
 }
 
-function sessionReps(sess,ids){return sess.sets.filter(x=>ids.includes(x.ex)).reduce((a,x)=>a+x.reps,0)}
-function viewHist(){
-  const tests=S.sessions.filter(s=>s.type==='T');
-  const A=S.sessions.filter(s=>s.type==='A').slice(-12);
-  const mins=Math.round(S.sessions.reduce((a,s)=>a+s.dur,0)/60);
-  const first=tests[0],last=tests[tests.length-1];
-  const val=(t,k)=>t&&t.test&&t.test[k]!=null?t.test[k]:'–';
-  const chart=A.length>=2?lineChart(A.map(s=>({x:fmtDate(s.date),y:sessionReps(s,['bandPush','deficit'])}))):`<p class="muted">Biểu đồ hiện khi có từ 2 buổi Ngực + Tay.</p>`;
-  return `<div class="stack">
-  <header><div class="eyebrow">Chu kỳ 8 tuần</div><h1>Tiến độ</h1></header>
-  <div class="stats"><div class="stat"><b class="num">${S.sessions.length}</b><span>buổi đã tập</span></div><div class="stat"><b class="num">${mins}</b><span>phút tập</span></div><div class="stat"><b class="num">${cycleWeek()}/8</b><span>tuần</span></div></div>
-  <section class="card stack" style="gap:10px"><div><div class="eyebrow">Ngực</div><h3>Tổng rep push-up chính mỗi buổi A</h3><p class="muted" style="font-size:.82rem">Push-up có dây + deficit. Rep giảm khi lên bậc khó hơn là bình thường.</p></div>${chart}</section>
-  <section class="card"><div class="eyebrow">Kiểm tra thể lực</div>
-    ${tests.length?`<table class="cmp num"><tr><th></th><th class="muted">Lần đầu</th><th class="muted">Gần nhất</th></tr>
-      <tr><td>Push-up tối đa</td><td>${val(first,'maxPush')}</td><td><b>${val(last,'maxPush')}</b></td></tr>
-      <tr><td>Plank (giây)</td><td>${val(first,'plankMax')}</td><td><b>${val(last,'plankMax')}</b></td></tr>
-      <tr><td>Squat 60 giây</td><td>${val(first,'squat60')}</td><td><b>${val(last,'squat60')}</b></td></tr></table>`:'<p class="muted" style="margin-top:6px">Chưa có kết quả. Làm buổi kiểm tra ở Trang chủ.</p>'}
-  </section>
-  <div class="sec-h"><h2>Nhật ký tập</h2></div>
-  <div>${S.sessions.length?[...S.sessions].reverse().map(histCard).join(''):'<p class="muted">Chưa có buổi nào. Buổi đầu tiên sẽ hiện ở đây.</p>'}</div></div>`;
+/* ============ Progress ============ */
+function sampleSessions(){
+  const out=[],now=startOfDay(Date.now()),DAYS=[40,37,33,30,26,23,19,16,12,9,5,2];
+  out.push({type:'T',date:now-43*DAY+18*3600e3,dur:690,sets:[],test:{maxPush:38,plankMax:95,squat60:41}});
+  DAYS.forEach((d,i)=>{const A=i%2===0,date=now-d*DAY+18*3600e3,p=Math.floor(i/2);
+    if(A){const r=[[12,11,10,9],[12,11,10,10],[12,12,11,10],[12,12,12,11],[9,9,8,8],[10,9,9,9]][p];
+      out.push({type:'A',date,dur:1750+i*10,lvl:{bandPush:p>=4?1:0},sets:r.map((x,j)=>({ex:'bandPush',name:'Push-up có dây',set:j+1,reps:x,hi:12,of:4})).concat([13,12,12].map((x,j)=>({ex:'deficit',name:'Deficit push-up',set:j+1,reps:x+Math.min(p,3),hi:15,of:3}))),
+        vol:{chest:7+Math.min(p,4),arms:p>2?9:7,back:4}});
+    } else out.push({type:'B',date,dur:1620,sets:[10,10,9].map((x,j)=>({ex:'split',name:'Bulgarian split squat',set:j+1,reps:x+Math.min(p,2),hi:12,of:3})),vol:{legs:8+Math.min(p,2),core:10+Math.min(p,4)}});
+  });
+  out.push({type:'T',date:now-1*DAY+18*3600e3,dur:700,sets:[],test:{maxPush:46,plankMax:128,squat60:47}});
+  return out;
 }
+function stackedWeeks(list){
+  const W=330,H=170,p={l:26,r:6,t:12,b:24},n=8,m0=monday()-(n-1)*7*DAY;
+  const weeks=[...Array(n)].map((_,i)=>volBetween(list,m0+i*7*DAY,m0+(i+1)*7*DAY));
+  const tot=weeks.map(v=>Object.values(v).reduce((a,b)=>a+b,0));
+  const top=Math.max(TARGET_SUM,...tot);const ymax=Math.ceil(top/10)*10;
+  const bw=(W-p.l-p.r)/n,Y=v=>p.t+(H-p.t-p.b)*(1-v/ymax);
+  let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Số hiệp mỗi tuần theo nhóm cơ, 8 tuần gần nhất">`;
+  [0,ymax/2,ymax].forEach(t=>{s+=`<line x1="${p.l}" x2="${W-p.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)"/><text x="${p.l-6}" y="${Y(t)+4}" text-anchor="end">${t}</text>`});
+  s+=`<line x1="${p.l}" x2="${W-p.r}" y1="${Y(TARGET_SUM)}" y2="${Y(TARGET_SUM)}" stroke="var(--ink)" stroke-dasharray="3 4" stroke-opacity=".5"/><text x="${W-p.r}" y="${Y(TARGET_SUM)-5}" text-anchor="end" style="fill:var(--ink)">mục tiêu ${TARGET_SUM}</text>`;
+  weeks.forEach((v,i)=>{let y=Y(0);const x=p.l+i*bw+bw*0.2,w=bw*0.6;
+    if(!tot[i])s+=`<rect x="${x}" y="${Y(0)-3}" width="${w}" height="3" rx="1.5" fill="var(--line)"/>`;
+    GROUPS.forEach(g=>{const c=v[g.k]||0;if(!c)return;const h=Y(0)-Y(c);y-=h;s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(0,h-1.5).toFixed(1)}" rx="2" fill="${g.c}"/>`});
+    const d=new Date(m0+i*7*DAY);s+=`<text x="${(x+w/2).toFixed(1)}" y="${H-7}" text-anchor="middle"${i===n-1?' style="fill:var(--ink);font-weight:600"':''}>${d.getDate()}/${d.getMonth()+1}</text>`});
+  return s+'</svg>'+`<div class="legend">${GROUPS.map(g=>`<span style="--gc:${g.c}">${g.n}</span>`).join('')}</div>`;
+}
+function lineChart(pts,color='var(--c-chest)'){
+  const W=330,H=160,p={l:28,r:16,t:18,b:24};
+  const ys=pts.map(p=>p.y),mx=Math.max(...ys),mn=Math.min(...ys);
+  const top=Math.ceil((mx+5)/10)*10,bot=Math.max(0,Math.floor((mn-5)/10)*10);
+  const X=i=>p.l+(W-p.l-p.r)*(i/Math.max(1,pts.length-1));
+  const Y=v=>p.t+(H-p.t-p.b)*(1-(v-bot)/((top-bot)||1));
+  const d=pts.map((q,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(q.y).toFixed(1)).join(' ');
+  const area=d+` L${X(pts.length-1).toFixed(1)} ${Y(bot)} L${X(0).toFixed(1)} ${Y(bot)} Z`;
+  const li=pts.length-1,gid='lg'+Math.random().toString(36).slice(2,7);
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tổng rep push-up chính theo buổi">
+   <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".35"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+   ${[bot,Math.round((bot+top)/2),top].map(t=>`<line x1="${p.l}" x2="${W-p.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)"/><text x="${p.l-6}" y="${Y(t)+4}" text-anchor="end">${t}</text>`).join('')}
+   <path d="${area}" fill="url(#${gid})"/>
+   <path d="${d}" fill="none" stroke="${color}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+   ${pts.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q.y)}" r="${i===li?5.5:3}" fill="${i===li?color:'var(--surface)'}" stroke="${color}" stroke-width="2"/>`).join('')}
+   <text x="${X(li)}" y="${Y(pts[li].y)-11}" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-size:12px">${pts[li].y}</text>
+   <text x="${X(0)}" y="${H-7}" text-anchor="start">${esc(pts[0].x)}</text><text x="${X(li)}" y="${H-7}" text-anchor="end">${esc(pts[li].x)}</text></svg>`;
+}
+function testBars(first,last){
+  const rows=[['maxPush','Push-up tối đa','rep','var(--c-chest)'],['plankMax','Plank','giây','var(--c-core)'],['squat60','Squat 60 giây','rep','var(--c-legs)']];
+  return rows.map(([k,n,u,c])=>{const a=first&&first.test?first.test[k]:null,b=last&&last.test?last.test[k]:null;
+    const mx=Math.max(a||0,b||0,1),ch=a&&b&&last!==first?Math.round(100*(b-a)/a):null;
+    return `<div class="tb" style="--tc:${c}"><div class="row between"><b>${n}</b>${ch!=null?`<span class="delta${ch<0?' neg':''}">${ch>=0?'+':''}${ch}%</span>`:''}</div>
+      <div class="tbr"><span>Lần đầu</span><i style="width:${a?(100*a/mx).toFixed(0):0}%" class="old"></i><em class="num">${a??'–'} ${a!=null?u:''}</em></div>
+      <div class="tbr"><span>Gần nhất</span><i style="width:${b?(100*b/mx).toFixed(0):0}%"></i><em class="num">${b??'–'} ${b!=null?u:''}</em></div></div>`}).join('');
+}
+function records(list){
+  const ids=['bandPush','deficit','dips','curl','split','bandSquat'];
+  return ids.map(id=>{const xs=list.flatMap(s=>s.sets.filter(x=>x.ex===id&&!x.test));if(!xs.length)return'';const best=Math.max(...xs.map(x=>x.reps));
+    return `<div class="rec" style="--gc:${gColor(GOF[id])}"><span class="thumb sm">${figHTML(id)}</span><div><b>${esc(EX[id].n)}</b><span>${xs.length} hiệp đã ghi</span></div><em class="num">${best}<small> rep</small></em></div>`}).join('');
+}
+function viewHist(){
+  const list=demo?sampleSessions():S.sessions;
+  const tests=list.filter(s=>s.type==='T'),A=list.filter(s=>s.type==='A').slice(-12);
+  const mins=Math.round(list.reduce((a,s)=>a+s.dur,0)/60);
+  const reps=list.reduce((a,s)=>a+s.sets.filter(x=>x.unit!=='s'&&!x.test).reduce((b,x)=>b+x.reps,0),0);
+  const recs=records(list);
+  return `<div class="stack">
+  <header class="row between"><div><div class="eyebrow">Chu kỳ 8 tuần</div><h1>Tiến độ</h1></div><button class="btn mini${demo?' on':''}" id="demo">${demo?'Tắt dữ liệu mẫu':'Xem dữ liệu mẫu'}</button></header>
+  ${demo?'<div class="notice warn">Đang xem dữ liệu mẫu để thấy biểu đồ trông thế nào. Đây không phải số liệu của anh.</div>':(!list.length?'<div class="notice info">Chưa có buổi tập nào. Biểu đồ sẽ tự điền sau mỗi buổi. Bấm "Xem dữ liệu mẫu" để xem trước.</div>':'')}
+  <div class="stats">
+    <div class="stat" style="--sc:var(--c-arms)"><span class="si">${IC.cal}</span><b class="num">${list.length}</b><span>buổi tập</span></div>
+    <div class="stat" style="--sc:var(--c-core)"><span class="si">${IC.clock}</span><b class="num">${mins}</b><span>phút tập</span></div>
+    <div class="stat" style="--sc:var(--c-chest)"><span class="si">${IC.bolt}</span><b class="num">${reps}</b><span>tổng rep</span></div></div>
+  <section class="card stack" style="gap:10px"><div><div class="eyebrow">Khối lượng</div><h3>Số hiệp mỗi tuần theo nhóm cơ</h3></div>${stackedWeeks(list)}</section>
+  <section class="card stack" style="gap:10px"><div><div class="eyebrow" style="color:var(--c-chest)">Ngực</div><h3>Tổng rep push-up chính mỗi buổi A</h3><p class="muted" style="font-size:.8rem">Push-up có dây + deficit. Rep giảm khi lên bậc khó hơn là bình thường.</p></div>
+    ${A.length>=2?lineChart(A.map(s=>({x:fmtDate(s.date),y:sessionReps(s,['bandPush','deficit'])}))):'<div class="empty-chart">Cần ít nhất 2 buổi Ngực + Tay</div>'}</section>
+  <section class="card stack" style="gap:12px"><div><div class="eyebrow" style="color:var(--c-core)">Kiểm tra thể lực</div><h3>Lần đầu so với gần nhất</h3></div>${testBars(tests[0],tests[tests.length-1])}</section>
+  ${recs?`<section class="card"><div class="eyebrow" style="margin-bottom:4px">Kỷ lục</div><h3 style="margin-bottom:6px">Rep cao nhất trong một hiệp</h3>${recs}</section>`:''}
+  <div class="sec-h"><h2>Nhật ký tập</h2></div>
+  <div>${list.length?[...list].reverse().slice(0,20).map(histCard).join(''):'<p class="muted">Buổi đầu tiên sẽ hiện ở đây.</p>'}</div></div>`;
+}
+function sessionReps(sess,ids){return sess.sets.filter(x=>ids.includes(x.ex)).reduce((a,x)=>a+x.reps,0)}
 function histCard(s){
   const by={};s.sets.forEach(x=>{(by[x.ex]=by[x.ex]||[]).push(x)});
   const rows=Object.entries(by).map(([id,xs])=>`<div class="hrow"><span class="thumb sm">${figHTML(id)}</span><div><b>${esc(xs[0].name)}</b><span class="num">${xs.length>1?xs.length+' hiệp: ':''}${xs.map(x=>x.reps).join(' · ')} ${xs[0].unit==='s'?'giây':'rep'}</span></div></div>`).join('');
-  return `<article class="hcard"><div class="row between"><div><div class="eyebrow">${fmtDate(s.date)}</div><h3>${SESS[s.type].name}</h3></div><span class="muted num">${mmss(s.dur)}</span></div>${rows||'<p class="muted" style="margin-top:6px">Không có hiệp nhập rep.</p>'}</article>`;
-}
-function lineChart(pts){
-  const W=320,H=150,p={l:30,r:14,t:16,b:24};
-  const ys=pts.map(p=>p.y),mx=Math.max(...ys),mn=Math.min(...ys);
-  const top=Math.ceil((mx+5)/10)*10,bot=Math.max(0,Math.floor((mn-5)/10)*10);
-  const X=i=>p.l+(W-p.l-p.r)*(i/(pts.length-1));
-  const Y=v=>p.t+(H-p.t-p.b)*(1-(v-bot)/((top-bot)||1));
-  const ticks=[bot,Math.round((bot+top)/2),top];
-  const d=pts.map((q,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(q.y).toFixed(1)).join(' ');
-  const area=d+` L${X(pts.length-1).toFixed(1)} ${Y(bot)} L${X(0).toFixed(1)} ${Y(bot)} Z`;
-  const li=pts.length-1;
-  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tổng rep push-up chính theo buổi">
-   ${ticks.map(t=>`<line x1="${p.l}" x2="${W-p.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)" stroke-width="1"/><text x="${p.l-6}" y="${Y(t)+4}" text-anchor="end">${t}</text>`).join('')}
-   <path d="${area}" fill="var(--accent-soft)"/>
-   <path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
-   ${pts.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q.y)}" r="${i===li?5:3}" fill="${i===li?'var(--accent)':'var(--surface)'}" stroke="var(--accent)" stroke-width="2"/>`).join('')}
-   <text x="${X(li)}" y="${Y(pts[li].y)-10}" text-anchor="middle" style="fill:var(--ink);font-weight:600">${pts[li].y}</text>
-   <text x="${X(0)}" y="${H-6}" text-anchor="start">${esc(pts[0].x)}</text>
-   <text x="${X(li)}" y="${H-6}" text-anchor="end">${esc(pts[li].x)}</text></svg>`;
+  const t=s.test?`<p class="num" style="margin-top:8px">Push-up <b>${s.test.maxPush??'–'}</b> · Plank <b>${s.test.plankMax??'–'}s</b> · Squat <b>${s.test.squat60??'–'}</b></p>`:'';
+  return `<article class="hcard" style="--sc:${SCOL[s.type]}"><div class="row between"><div><div class="eyebrow">${fmtDate(s.date)}</div><h3>${SESS[s.type].name}</h3></div><span class="muted num">${mmss(s.dur)}</span></div>${t}${rows}</article>`;
 }
 
 function viewLib(){
-  const groups=[['Buổi A · Ngực + Tay',['bandPush','bandRow','deficit','dips','curl','ohExt']],['Buổi B · Chân + Bụng',['split','deadBug','bandSquat','hollow','slBridge','sidePlank']],['Finisher',['diamond','wide','decline','standard','wallSit','slowMC','shTap','revCrunch']]];
+  const groups=[['Buổi A · Ngực + Tay','A',['bandPush','bandRow','deficit','dips','curl','ohExt']],['Buổi B · Chân + Bụng','B',['split','deadBug','bandSquat','hollow','slBridge','sidePlank']],['Finisher','T',['diamond','wide','decline','standard','wallSit','slowMC','shTap','revCrunch']]];
   const fl=pendingFlags();
   return `<div class="stack"><header><div class="eyebrow">Kỹ thuật và bậc khó</div><h1>Bài tập</h1></header>
   <div class="notice info"><div><b>Quy tắc tăng dần:</b> làm đủ số rep cao nhất ở tất cả các hiệp thì buổi sau tăng độ khó.</div></div>
-  ${groups.map(([g,ids])=>`<section><div class="sec-h" style="margin-bottom:10px"><h2 style="font-size:1.25rem">${g}</h2></div><div class="grid">${ids.map(id=>`<button class="lcard" data-ex="${id}">${figHTML(id)}<div><b>${esc(exName(id))}</b><small>${esc((EX[id].mus||[]).join(' · '))}</small>${fl.includes(id)?'<br><span class="pill">Nên tăng độ khó</span>':''}</div></button>`).join('')}</div></section>`).join('')}</div>`;
+  ${groups.map(([g,k,ids])=>`<section><div class="sec-h" style="margin-bottom:10px"><h2 style="font-size:1.25rem">${g}</h2></div><div class="grid">${ids.map(id=>`<button class="lcard" data-ex="${id}" style="--gc:${gColor(GOF[id])}">${figHTML(id)}<div><span class="gtag">${gName(GOF[id])}</span><b>${esc(exName(id))}</b>${fl.includes(id)?'<span class="pill">Nên tăng độ khó</span>':''}</div></button>`).join('')}</div></section>`).join('')}</div>`;
 }
 
+/* ============ Settings ============ */
+let setPanel=null;
+function srow(id,icon,color,label,val,o={}){return `<button class="srow${o.danger?' danger':''}" id="${id}"><span class="sic" style="--ic:${color}">${icon}</span><span class="sl">${label}</span>${val!=null?`<span class="sv">${val}</span>`:''}${o.noChev?'':`<span class="chev">${IC.next}</span>`}</button>`}
 function viewSet(){
+  const w=cycleWeek();
   return `<div class="stack"><header><div class="eyebrow">Ứng dụng</div><h1>Cài đặt</h1></header>
-  <section class="card stack" style="gap:8px"><label for="nm"><b>Tên hiển thị</b></label><input type="text" id="nm" value="${esc(S.name||'')}" maxlength="24"></section>
-  <section class="card"><label class="switch" for="snd"><span><b>Âm báo</b><br><span class="muted" style="font-size:.85rem">Bíp 3-2-1 và khi hết giờ. Trên iPhone cần tắt chế độ im lặng.</span></span><input type="checkbox" id="snd" ${S.sound?'checked':''}></label></section>
-  <section class="card stack" style="gap:10px"><div><h3>Sao lưu</h3><p class="muted" style="margin-top:4px;font-size:.9rem">Dữ liệu chỉ nằm trên máy này. Thỉnh thoảng sao chép đoạn mã dưới đây, dán vào Ghi chú để giữ lại.</p></div>
-    <textarea id="bk-out" readonly>${esc(JSON.stringify(S))}</textarea>
-    <button class="btn btn-line" id="bk-copy">Sao chép bản sao lưu</button></section>
-  <section class="card stack" style="gap:10px"><div><h3>Khôi phục</h3><p class="muted" style="margin-top:4px;font-size:.9rem">Dán bản sao lưu vào đây. Dữ liệu hiện tại sẽ bị thay thế.</p></div>
-    <textarea id="bk-in" placeholder='{"sessions":[...]}'></textarea>
-    <button class="btn btn-line" id="bk-load">Khôi phục từ bản sao lưu</button><div id="bk-msg" class="muted" aria-live="polite"></div></section>
-  <section class="card stack" style="gap:10px"><h3>Xóa toàn bộ dữ liệu</h3>
-    <div id="rst"><button class="btn btn-line" id="rst-1">Xóa lịch sử và bắt đầu lại</button></div></section></div>`;
+  <section class="profile"><span class="avatar lg">${initial()}</span><div style="min-width:0;flex:1"><label for="nm" class="eyebrow">Tên hiển thị</label><input type="text" id="nm" value="${esc(S.name||'')}" maxlength="24" autocomplete="off"><div class="muted" style="font-size:.8rem;margin-top:4px">Tuần ${w}/8 · ${S.sessions.length} buổi đã tập</div></div></section>
+
+  <div class="sgroup-h">Tập luyện</div>
+  <section class="sgroup">
+    <label class="srow" for="snd"><span class="sic" style="--ic:var(--c-chest)">${IC.sound}</span><span class="sl">Âm báo đếm ngược<small>Bíp 3-2-1. Cần tắt chế độ im lặng trên iPhone.</small></span><input class="tog" type="checkbox" id="snd" ${S.sound?'checked':''}></label>
+    ${srow('go-lib',IC.layers,'var(--c-core)','Bậc khó các bài',Object.values(S.level).filter(Boolean).length+' bài đã lên bậc')}
+  </section>
+
+  <div class="sgroup-h">Chu kỳ</div>
+  <section class="sgroup">
+    ${srow('cyc-info',IC.cal,'var(--c-arms)','Tuần hiện tại',`${w}/8 · ${phaseOf(w).n}`,{noChev:true})}
+    ${srow('cyc-reset',IC.restart,'var(--c-legs)','Bắt đầu lại chu kỳ từ tuần 1',null)}
+    ${setPanel==='cyc'?`<div class="spanel"><p>Đặt lại về tuần 1? Lịch sử tập và bậc khó vẫn giữ nguyên.</p><div class="row"><button class="btn btn-primary" id="cyc-yes">Đặt lại</button><button class="btn btn-ghost" id="sp-close">Thôi</button></div></div>`:''}
+  </section>
+
+  <div class="sgroup-h">Dữ liệu</div>
+  <section class="sgroup">
+    ${srow('bk-open',IC.upload,'var(--c-back)','Sao lưu dữ liệu',null)}
+    ${setPanel==='bk'?`<div class="spanel"><p>Bấm nút để sao chép, rồi dán vào app Ghi chú hoặc gửi cho chính anh qua Telegram.</p><button class="btn btn-primary btn-block" id="bk-copy">${IC.copy} Sao chép bản sao lưu</button><details><summary class="muted">Xem mã sao lưu</summary><textarea id="bk-out" readonly>${esc(JSON.stringify(S))}</textarea></details></div>`:''}
+    ${srow('rs-open',IC.download,'var(--c-arms)','Khôi phục từ bản sao lưu',null)}
+    ${setPanel==='rs'?`<div class="spanel"><p>Dán bản sao lưu vào ô dưới. Dữ liệu hiện tại sẽ bị thay thế.</p><textarea id="bk-in" placeholder="Dán mã sao lưu vào đây"></textarea><button class="btn btn-primary btn-block" id="bk-load">Khôi phục</button><div id="bk-msg" class="muted" aria-live="polite"></div></div>`:''}
+    ${srow('rst-1',IC.trash,'var(--bad)','Xóa toàn bộ dữ liệu',null,{danger:true})}
+    ${setPanel==='rst'?`<div class="spanel"><p>Xóa hết lịch sử và bậc khó? Không hoàn tác được.</p><div class="row"><button class="btn btn-danger" id="rst-yes">Xóa hết</button><button class="btn btn-ghost" id="sp-close">Thôi</button></div></div>`:''}
+  </section>
+
+  <div class="sgroup-h">Giới thiệu</div>
+  <section class="sgroup">
+    ${srow('ab-1',IC.info,'var(--muted)','Phiên bản','1.3',{noChev:true})}
+    ${srow('ab-2',IC.book,'var(--muted)','Chương trình','2 buổi/tuần, 8 tuần',{noChev:true})}
+  </section>
+  <p class="muted" style="font-size:.78rem;text-align:center;padding:4px 12px">Dữ liệu chỉ lưu trên máy này, không gửi lên mạng.</p></div>`;
 }
 
 /* ============ Exercise detail ============ */
@@ -736,12 +970,17 @@ document.getElementById('app').addEventListener('click',e=>{
   if(t.dataset.pv){preview=t.dataset.pv;render();window.scrollTo(0,0);return}
   if(t.dataset.ex){openEx(t.dataset.ex);return}
   if(t.id==='back'){preview=null;render();return}
-  if(t.id==='bk-copy'){const ta=$('#bk-out');
-    try{navigator.clipboard.writeText(ta.value).then(()=>{t.textContent='Đã sao chép'},()=>{ta.select();t.textContent='Đã chọn sẵn, bấm Sao chép'})}catch(_){ta.select()}return}
+  if(t.dataset.go){setTab(t.dataset.go);return}
+  if(t.id==='demo'){demo=!demo;render();return}
+  if(t.id==='go-lib'){setTab('lib');return}
+  const panels={'cyc-reset':'cyc','bk-open':'bk','rs-open':'rs','rst-1':'rst'};
+  if(panels[t.id]){setPanel=setPanel===panels[t.id]?null:panels[t.id];render();return}
+  if(t.id==='sp-close'){setPanel=null;render();return}
+  if(t.id==='cyc-yes'){S.startDate=Date.now();save();setPanel=null;render();return}
+  if(t.id==='bk-copy'){const txt=JSON.stringify(S);
+    try{navigator.clipboard.writeText(txt).then(()=>{t.innerHTML=IC.check+' Đã sao chép'},()=>{const d=t.parentNode.querySelector('details');d.open=true;d.querySelector('textarea').select();t.textContent='Chọn sẵn, bấm Sao chép trên bàn phím'})}catch(_){}return}
   if(t.id==='bk-load'){try{const d=JSON.parse($('#bk-in').value);if(!Array.isArray(d.sessions))throw 0;S=Object.assign({},DEF,d);save();$('#bk-msg').textContent='Đã khôi phục '+S.sessions.length+' buổi tập.'}catch(_){$('#bk-msg').textContent='Không đọc được bản sao lưu. Kiểm tra đã dán đủ đoạn mã chưa.'}return}
-  if(t.id==='rst-1'){$('#rst').innerHTML='<p>Xóa hết lịch sử và bậc khó? Không hoàn tác được.</p><div class="row" style="margin-top:8px"><button class="btn btn-primary" id="rst-yes">Xóa hết</button><button class="btn btn-ghost" id="rst-no">Thôi</button></div>';return}
-  if(t.id==='rst-yes'){const n=S.name;S=JSON.parse(JSON.stringify(DEF));S.name=n;save();render();return}
-  if(t.id==='rst-no'){render();return}
+  if(t.id==='rst-yes'){const n=S.name;S=JSON.parse(JSON.stringify(DEF));S.name=n;save();setPanel=null;render();return}
 });
 document.getElementById('app').addEventListener('change',e=>{if(e.target.id==='snd'){S.sound=e.target.checked;save()}});
 document.getElementById('app').addEventListener('input',e=>{if(e.target.id==='nm'){S.name=e.target.value.trim()||'Michael';save()}});
@@ -765,7 +1004,7 @@ const PH={work:'Tập',rest:'Nghỉ',transit:'Chuyển bài',warm:'Khởi độn
 
 function startSession(k){
   unlockAudio();keepAwake();
-  P={k,steps:SESS[k].steps(),i:0,start:Date.now(),log:{},paused:false,endAt:0,remain:0,watchStart:0,tick:null,sheet:false};
+  P={k,steps:SESS[k].steps(),i:0,start:Date.now(),log:{},wd:[],paused:false,endAt:0,remain:0,watchStart:0,tick:null,sheet:false};
   $('#player').hidden=false;document.body.style.overflow='hidden';
   enterStep(0);
   P.tick=setInterval(tick,200);
@@ -838,7 +1077,7 @@ function tick(){
     if(!P.paused){
       const c=Math.ceil(rem);
       if(c<=3&&c>=1&&P.lastBeep!==c&&st.secs>5){P.lastBeep=c;beep(660,0.1)}
-      if(rem<=0){beep(st.phase==='work'?520:990,0.35,0.3);advance()}
+      if(rem<=0){beep(st.phase==='work'?520:990,0.35,0.3);if(st.phase==='work'&&st.ex&&!st.test)P.wd.push(st.ex);advance()}
     }
   } else if(st.t==='watch'&&P.watchStart){
     const tt=$('#tt');if(tt)tt.textContent=mmss((Date.now()-P.watchStart)/1000-0.5);
@@ -885,7 +1124,9 @@ function finish(){
     sets.push(rec);
   }
   const lv={};Object.keys(EX).forEach(id=>{if(EX[id].variants)lv[id]=lvl(id)});
-  const sess={type:P.k,date:Date.now(),dur,sets,lvl:lv};
+  const vol={};const addv=ex=>{const g=GOF[ex];if(g)vol[g]=(vol[g]||0)+1};
+  sets.forEach(x=>{if(!x.test)addv(x.ex)});P.wd.forEach(addv);
+  const sess={type:P.k,date:Date.now(),dur,sets,lvl:lv,vol};
   if(Object.keys(test).length)sess.test=test;
   if(!S.startDate||(P.k==='T'&&cycleWeek()>=8))S.startDate=Date.now();
   S.sessions.push(sess);save();
