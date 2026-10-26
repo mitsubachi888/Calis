@@ -545,7 +545,7 @@ function nextType(){
   if(cycleWeek()>=8 && (!lastT||daysAgo(lastT.date)>40))return 'T';
   const l=lastTrain();return !l||l.type==='B'?'A':'B';
 }
-function greet(){const h=new Date().getHours();return h<11?'Chào buổi sáng':h<14?'Chào buổi trưa':h<18?'Chào buổi chiều':'Chào buổi tối'}
+function greet(){const h=new Date().getHours();return h<4?'Khuya rồi':h<11?'Chào buổi sáng':h<14?'Chào buổi trưa':h<18?'Chào buổi chiều':'Chào buổi tối'}
 function weekStreak(){
   let w=0,m=monday();
   const has=(a,b)=>S.sessions.some(s=>s.date>=a&&s.date<b);
